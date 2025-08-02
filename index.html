@@ -11,6 +11,10 @@
                 box-sizing: border-box;
             }
 
+            html {
+                scroll-behavior: smooth;
+            }
+
             body {
                 font-family:
                     "Inter",
@@ -181,12 +185,14 @@
                 backdrop-filter: blur(20px);
                 border: 1px solid rgba(255, 255, 255, 0.2);
                 border-radius: 20px;
-                padding: 2rem;
+                padding: 0;
                 text-align: center;
                 transition: all 0.3s ease;
                 cursor: pointer;
                 position: relative;
                 overflow: hidden;
+                display: flex;
+                flex-direction: column;
             }
 
             .game-card::before {
@@ -231,19 +237,28 @@
                 border-color: rgba(0, 245, 255, 0.5);
             }
 
+            .game-card:hover .game-icon img {
+                transform: scale(1.1);
+            }
+
             .game-icon {
-                width: 80px;
-                height: 80px;
-                margin: 0 auto 1.5rem;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                border-radius: 20px;
+                width: 100%;
+                height: 160px;
+                overflow: hidden;
+            }
+
+            .game-icon img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.4s ease;
+            }
+
+            .game-card-content {
+                padding: 1.5rem;
                 display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 2rem;
-                font-weight: bold;
-                color: white;
-                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+                flex-direction: column;
+                flex-grow: 1;
             }
 
             .game-card h3 {
@@ -256,6 +271,7 @@
                 opacity: 0.8;
                 margin-bottom: 1.5rem;
                 line-height: 1.6;
+                flex-grow: 1;
             }
 
             .download-btn {
@@ -268,6 +284,7 @@
                 cursor: pointer;
                 transition: all 0.3s ease;
                 width: 100%;
+                margin-top: auto;
             }
 
             .download-btn:hover {
@@ -376,24 +393,19 @@
                 color: #00f5ff;
             }
 
-            @media (max-width: 768px) {
-                .nav-links {
-                    display: none;
-                }
+            .hamburger {
+                display: none;
+                cursor: pointer;
+            }
 
-                .games-grid {
-                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                    gap: 1.5rem;
-                    padding: 2rem 1rem;
-                }
-
-                .stats {
-                    gap: 2rem;
-                }
-
-                .hero p {
-                    font-size: 1.2rem;
-                }
+            .bar {
+                display: block;
+                width: 25px;
+                height: 3px;
+                margin: 5px auto;
+                -webkit-transition: all 0.3s ease-in-out;
+                transition: all 0.3s ease-in-out;
+                background-color: white;
             }
 
             .pulse {
@@ -448,6 +460,100 @@
                     transform: translateX(-50%) translateY(-5px);
                 }
             }
+
+            /* --- Mobile Adjustments --- */
+            @media (max-width: 768px) {
+                .nav-links {
+                    position: fixed;
+                    left: -100%;
+                    top: 5rem; /* Match navbar height */
+                    flex-direction: column;
+                    background-color: #0f0f23;
+                    width: 100%;
+                    text-align: center;
+                    transition: 0.3s;
+                    gap: 1.5rem;
+                    padding: 2rem 0;
+                }
+
+                .nav-links.active {
+                    left: 0;
+                }
+
+                .hamburger {
+                    display: block;
+                }
+
+                .hamburger.active .bar:nth-child(2) {
+                    opacity: 0;
+                }
+                .hamburger.active .bar:nth-child(1) {
+                    transform: translateY(8px) rotate(45deg);
+                }
+                .hamburger.active .bar:nth-child(3) {
+                    transform: translateY(-8px) rotate(-45deg);
+                }
+
+                .hero h1 {
+                    font-size: clamp(2.5rem, 10vw, 4rem);
+                }
+
+                .hero p {
+                    font-size: 1.1rem;
+                    padding: 0 1rem;
+                }
+
+                .cta-button {
+                    padding: 1.2rem 2.5rem;
+                    font-size: 1rem;
+                }
+
+                #download .cta-button {
+                    font-size: 1.2rem;
+                    padding: 1.5rem 3rem;
+                }
+
+                .games-grid {
+                    grid-template-columns: 1fr;
+                    gap: 2rem;
+                    padding: 2rem 1.5rem;
+                }
+
+                .game-card-content {
+                    padding: 1.2rem;
+                }
+
+                .game-card h3 {
+                    font-size: 1.3rem;
+                }
+
+                .game-card p {
+                    font-size: 0.9rem;
+                    margin-bottom: 1.2rem;
+                }
+
+                .stats {
+                    gap: 1.5rem;
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .stat-number {
+                    font-size: 2.2rem;
+                }
+
+                .stat-label {
+                    font-size: 0.8rem;
+                }
+
+                .features-grid {
+                    padding: 0 1rem;
+                }
+
+                .feature {
+                    padding: 1rem;
+                }
+            }
         </style>
     </head>
     <body>
@@ -459,9 +565,15 @@
                     <li><a href="#features">Features</a></li>
                     <li><a href="#download">Download</a></li>
                 </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
             </div>
         </nav>
 
+        <!-- Le reste de votre code HTML reste inchangé -->
         <section class="hero">
             <div class="web3-badge">Web 3.0 Gaming</div>
             <div class="floating-shapes">
@@ -503,94 +615,158 @@
 
         <section id="games" class="games-section">
             <div class="games-grid">
+                <!-- NOTE: These are placeholder images. Replace the src attribute with your actual game image URLs. -->
                 <div class="game-card" onclick="trackConversion('fortnite')">
-                    <div class="game-icon">🎯</div>
-                    <h3>Fortnite Battle Royale</h3>
-                    <p>
-                        Jump into the ultimate battle royale experience with 100
-                        players fighting for victory.
-                    </p>
-                    <button class="download-btn">PLAY NOW - FREE</button>
+                    <div class="game-icon">
+                        <img
+                            src="https://placehold.co/400x250/9933FF/FFFFFF?text=Fortnite"
+                            alt="Fortnite"
+                        />
+                    </div>
+                    <div class="game-card-content">
+                        <h3>Fortnite Battle Royale</h3>
+                        <p>
+                            Jump into the ultimate battle royale experience with
+                            100 players fighting for victory.
+                        </p>
+                        <button class="download-btn">PLAY NOW - FREE</button>
+                    </div>
                 </div>
 
                 <div class="game-card" onclick="trackConversion('minecraft')">
-                    <div class="game-icon">🎮</div>
-                    <h3>Minecraft Premium</h3>
-                    <p>
-                        Build, explore, and survive in infinite worlds. Unleash
-                        your creativity without limits.
-                    </p>
-                    <button class="download-btn">DOWNLOAD FREE</button>
+                    <div class="game-icon">
+                        <img
+                            src="https://placehold.co/400x250/4CAF50/FFFFFF?text=Minecraft"
+                            alt="Minecraft"
+                        />
+                    </div>
+                    <div class="game-card-content">
+                        <h3>Minecraft Premium</h3>
+                        <p>
+                            Build, explore, and survive in infinite worlds.
+                            Unleash your creativity without limits.
+                        </p>
+                        <button class="download-btn">DOWNLOAD FREE</button>
+                    </div>
                 </div>
 
                 <div class="game-card" onclick="trackConversion('valorant')">
-                    <div class="game-icon">⚡</div>
-                    <h3>Valorant</h3>
-                    <p>
-                        Tactical 5v5 shooter that combines precise gunplay with
-                        unique agent abilities.
-                    </p>
-                    <button class="download-btn">JOIN MATCH</button>
+                    <div class="game-icon">
+                        <img
+                            src="https://placehold.co/400x250/FF4554/FFFFFF?text=Valorant"
+                            alt="Valorant"
+                        />
+                    </div>
+                    <div class="game-card-content">
+                        <h3>Valorant</h3>
+                        <p>
+                            Tactical 5v5 shooter that combines precise gunplay
+                            with unique agent abilities.
+                        </p>
+                        <button class="download-btn">JOIN MATCH</button>
+                    </div>
                 </div>
 
                 <div class="game-card" onclick="trackConversion('gta')">
-                    <div class="game-icon">🏎️</div>
-                    <h3>GTA V Online</h3>
-                    <p>
-                        Experience the criminal underworld in the most ambitious
-                        open-world game ever.
-                    </p>
-                    <button class="download-btn">ENTER LOS SANTOS</button>
+                    <div class="game-icon">
+                        <img
+                            src="https://placehold.co/400x250/F79F1F/FFFFFF?text=GTA+V"
+                            alt="GTA V"
+                        />
+                    </div>
+                    <div class="game-card-content">
+                        <h3>GTA V Online</h3>
+                        <p>
+                            Experience the criminal underworld in the most
+                            ambitious open-world game ever.
+                        </p>
+                        <button class="download-btn">ENTER LOS SANTOS</button>
+                    </div>
                 </div>
 
                 <div class="game-card" onclick="trackConversion('roblox')">
-                    <div class="game-icon">🎲</div>
-                    <h3>Roblox Universe</h3>
-                    <p>
-                        Millions of games created by players. Endless
-                        possibilities await your discovery.
-                    </p>
-                    <button class="download-btn">EXPLORE WORLDS</button>
+                    <div class="game-icon">
+                        <img
+                            src="https://placehold.co/400x250/00A2FF/FFFFFF?text=Roblox"
+                            alt="Roblox"
+                        />
+                    </div>
+                    <div class="game-card-content">
+                        <h3>Roblox Universe</h3>
+                        <p>
+                            Millions of games created by players. Endless
+                            possibilities await your discovery.
+                        </p>
+                        <button class="download-btn">EXPLORE WORLDS</button>
+                    </div>
                 </div>
 
                 <div class="game-card" onclick="trackConversion('apex')">
-                    <div class="game-icon">🚀</div>
-                    <h3>Apex Legends</h3>
-                    <p>
-                        Choose your legend and fight for glory in this
-                        fast-paced battle royale shooter.
-                    </p>
-                    <button class="download-btn">DROP INTO ACTION</button>
+                    <div class="game-icon">
+                        <img
+                            src="https://placehold.co/400x250/D92F26/FFFFFF?text=Apex"
+                            alt="Apex Legends"
+                        />
+                    </div>
+                    <div class="game-card-content">
+                        <h3>Apex Legends</h3>
+                        <p>
+                            Choose your legend and fight for glory in this
+                            fast-paced battle royale shooter.
+                        </p>
+                        <button class="download-btn">DROP INTO ACTION</button>
+                    </div>
                 </div>
 
                 <div class="game-card" onclick="trackConversion('cod')">
-                    <div class="game-icon">💥</div>
-                    <h3>Call of Duty</h3>
-                    <p>
-                        The most iconic FPS franchise. Multiple game modes,
-                        endless action.
-                    </p>
-                    <button class="download-btn">DEPLOY NOW</button>
+                    <div class="game-icon">
+                        <img
+                            src="https://placehold.co/400x250/3B3B3B/FFFFFF?text=CoD"
+                            alt="Call of Duty"
+                        />
+                    </div>
+                    <div class="game-card-content">
+                        <h3>Call of Duty</h3>
+                        <p>
+                            The most iconic FPS franchise. Multiple game modes,
+                            endless action.
+                        </p>
+                        <button class="download-btn">DEPLOY NOW</button>
+                    </div>
                 </div>
 
                 <div class="game-card" onclick="trackConversion('cyberpunk')">
-                    <div class="game-icon">🌃</div>
-                    <h3>Cyberpunk 2077</h3>
-                    <p>
-                        Immerse yourself in the dark future of Night City. Your
-                        choices shape your destiny.
-                    </p>
-                    <button class="download-btn">JACK IN</button>
+                    <div class="game-icon">
+                        <img
+                            src="https://placehold.co/400x250/FCEE0C/000000?text=Cyberpunk"
+                            alt="Cyberpunk 2077"
+                        />
+                    </div>
+                    <div class="game-card-content">
+                        <h3>Cyberpunk 2077</h3>
+                        <p>
+                            Immerse yourself in the dark future of Night City.
+                            Your choices shape your destiny.
+                        </p>
+                        <button class="download-btn">JACK IN</button>
+                    </div>
                 </div>
 
                 <div class="game-card" onclick="trackConversion('elden')">
-                    <div class="game-icon">⚔️</div>
-                    <h3>Elden Ring</h3>
-                    <p>
-                        Explore the mystical Lands Between in this epic action
-                        RPG masterpiece.
-                    </p>
-                    <button class="download-btn">BEGIN JOURNEY</button>
+                    <div class="game-icon">
+                        <img
+                            src="https://placehold.co/400x250/C0A67E/000000?text=Elden+Ring"
+                            alt="Elden Ring"
+                        />
+                    </div>
+                    <div class="game-card-content">
+                        <h3>Elden Ring</h3>
+                        <p>
+                            Explore the mystical Lands Between in this epic
+                            action RPG masterpiece.
+                        </p>
+                        <button class="download-btn">BEGIN JOURNEY</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -654,6 +830,21 @@
         </section>
 
         <script>
+            const hamburger = document.querySelector(".hamburger");
+            const navLinks = document.querySelector(".nav-links");
+
+            hamburger.addEventListener("click", () => {
+                hamburger.classList.toggle("active");
+                navLinks.classList.toggle("active");
+            });
+
+            document.querySelectorAll(".nav-links a").forEach((n) =>
+                n.addEventListener("click", () => {
+                    hamburger.classList.remove("active");
+                    navLinks.classList.remove("active");
+                }),
+            );
+
             // CPA Conversion Tracking
             let conversions = {};
 
@@ -707,7 +898,8 @@
                 }, 3000);
             }
 
-            // Smooth scrolling
+            // Smooth scrolling - Le smooth scroll est maintenant géré par `scroll-behavior: smooth;` en CSS.
+            // Le script ci-dessous reste utile pour la compatibilité avec les navigateurs plus anciens.
             document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
                 anchor.addEventListener("click", function (e) {
                     e.preventDefault();
