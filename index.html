@@ -1,689 +1,763 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unlock Premium Rewards - Get Started Now!</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-            color: #ffffff;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-
-        /* Animated background particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #00ff88;
-            border-radius: 50%;
-            animation: float 6s infinite linear;
-            opacity: 0.7;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); }
-            100% { transform: translateY(-100vh) rotate(360deg); }
-        }
-
-        /* Header */
-        .header {
-            position: relative;
-            z-index: 10;
-            padding: 2rem 1rem;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 255, 136, 0.2);
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(45deg, #00ff88, #00bfff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from { filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.3)); }
-            to { filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.8)); }
-        }
-
-        /* Main container */
-        .container {
-            position: relative;
-            z-index: 10;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        /* Hero section */
-        .hero {
-            text-align: center;
-            padding: 1rem 0;
-            position: relative;
-        }
-
-        .neon-border {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            height: 90%;
-            border: 2px solid transparent;
-            border-radius: 20px;
-            background: linear-gradient(45deg, #00ff88, #00bfff, #ff00ff, #ffff00) border-box;
-            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: destination-out;
-            animation: rotate 4s linear infinite;
-            opacity: 0.3;
-        }
-
-        @keyframes rotate {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 900;
-            margin-bottom: 2rem;
-            background: linear-gradient(45deg, #ffffff, #00ff88, #00bfff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1.2;
-            text-shadow: 0 0 40px rgba(0, 255, 136, 0.3);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* CTA Button */
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 3rem;
-            background: linear-gradient(45deg, #00ff88, #00bfff);
-            color: #000;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: left 0.5s;
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.5);
-        }
-
-        /* Features section */
-        .features {
-            padding: 4rem 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 255, 136, 0.2);
-            border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent, rgba(0, 255, 136, 0.1), transparent);
-            animation: spin 4s linear infinite;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(0, 255, 136, 0.5);
-            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #00ff88;
-            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
-        }
-
-        .feature-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #ffffff;
-        }
-
-        .feature-desc {
-            opacity: 0.8;
-            line-height: 1.6;
-        }
-
-        /* Stats section */
-        .stats {
-            padding: 4rem 0;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.3);
-            border-top: 1px solid rgba(0, 255, 136, 0.2);
-            border-bottom: 1px solid rgba(0, 255, 136, 0.2);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .stat-item {
-            padding: 1rem;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 900;
-            background: linear-gradient(45deg, #00ff88, #00bfff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 40px rgba(0, 255, 136, 0.5);
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            opacity: 0.8;
-            margin-top: 0.5rem;
-        }
-
-        /* Offer Selection */
-        .offer-selection {
-            padding: 4rem 0;
-            text-align: center;
-        }
-
-        .offer-selection h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #ffffff, #00ff88);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .offer-selection p {
-            font-size: 1.1rem;
-            opacity: 0.8;
-            margin-bottom: 3rem;
-        }
-
-        .offers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .offer-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border: 2px solid rgba(0, 255, 136, 0.3);
-            border-radius: 25px;
-            padding: 2.5rem;
-            text-align: center;
-            transition: all 0.4s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .offer-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .offer-card:hover::before {
-            left: 100%;
-        }
-
-        .offer-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            border-color: rgba(0, 255, 136, 0.8);
-            box-shadow: 0 25px 50px rgba(0, 255, 136, 0.3);
-        }
-
-        .smart-link:hover {
-            box-shadow: 0 25px 50px rgba(0, 191, 255, 0.3);
-            border-color: rgba(0, 191, 255, 0.8);
-        }
-
-        .content-locker:hover {
-            box-shadow: 0 25px 50px rgba(255, 0, 255, 0.3);
-            border-color: rgba(255, 0, 255, 0.8);
-        }
-
-        .offer-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.5));
-        }
-
-        .smart-link .offer-icon {
-            filter: drop-shadow(0 0 20px rgba(0, 191, 255, 0.5));
-        }
-
-        .content-locker .offer-icon {
-            filter: drop-shadow(0 0 20px rgba(255, 0, 255, 0.5));
-        }
-
-        .offer-card h3 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #ffffff;
-        }
-
-        .offer-card p {
-            opacity: 0.8;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .offer-benefits {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .offer-benefits span {
-            background: rgba(0, 255, 136, 0.1);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            border: 1px solid rgba(0, 255, 136, 0.3);
-        }
-
-        .smart-link .offer-benefits span {
-            background: rgba(0, 191, 255, 0.1);
-            border-color: rgba(0, 191, 255, 0.3);
-        }
-
-        .content-locker .offer-benefits span {
-            background: rgba(255, 0, 255, 0.1);
-            border-color: rgba(255, 0, 255, 0.3);
-        }
-
-        .offer-cta {
-            background: linear-gradient(45deg, #00ff88, #00bfff);
-            color: #000;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
-        }
-
-        .smart-link .offer-cta {
-            background: linear-gradient(45deg, #00bfff, #0099ff);
-            box-shadow: 0 10px 30px rgba(0, 191, 255, 0.3);
-        }
-
-        .content-locker .offer-cta {
-            background: linear-gradient(45deg, #ff00ff, #ff66ff);
-            box-shadow: 0 10px 30px rgba(255, 0, 255, 0.3);
-        }
-
-        /* CTA Buttons */
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .cta-button.secondary {
-            background: linear-gradient(45deg, #ff00ff, #ff66ff);
-            box-shadow: 0 10px 30px rgba(255, 0, 255, 0.3);
-        }
-
-        .cta-button.secondary:hover {
-            box-shadow: 0 20px 40px rgba(255, 0, 255, 0.5);
-        }
-
-        /* Urgency Section */
-        .urgency-section {
-            margin-top: 4rem;
-            padding-top: 3rem;
-            text-align: center;
-            border-top: 1px solid rgba(0, 255, 136, 0.2);
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-        }
-
-        .urgency-section h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #ffffff, #00ff88);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
-        }
-
-        .urgency {
-            color: #ff4757;
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-            @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .features {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>GameVault 3.0 - Premium Gaming Experience</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
             }
 
-            .offers-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+            body {
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    sans-serif;
+                background: linear-gradient(
+                    135deg,
+                    #0f0f23 0%,
+                    #1a1a2e 50%,
+                    #16213e 100%
+                );
+                color: #ffffff;
+                overflow-x: hidden;
+                min-height: 100vh;
             }
 
-            .cta-buttons {
+            .hero {
+                position: relative;
+                min-height: 100vh;
+                display: flex;
                 flex-direction: column;
+                justify-content: center;
                 align-items: center;
+                text-align: center;
+                padding: 2rem;
+            }
+
+            .floating-shapes {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 1;
+            }
+
+            .shape {
+                position: absolute;
+                background: linear-gradient(45deg, #00f5ff, #ff00ff);
+                border-radius: 50%;
+                filter: blur(1px);
+                animation: float 6s ease-in-out infinite;
+            }
+
+            .shape:nth-child(1) {
+                width: 80px;
+                height: 80px;
+                top: 20%;
+                left: 10%;
+                animation-delay: 0s;
+            }
+            .shape:nth-child(2) {
+                width: 120px;
+                height: 120px;
+                top: 60%;
+                right: 15%;
+                animation-delay: 2s;
+            }
+            .shape:nth-child(3) {
+                width: 60px;
+                height: 60px;
+                bottom: 30%;
+                left: 20%;
+                animation-delay: 4s;
+            }
+
+            @keyframes float {
+                0%,
+                100% {
+                    transform: translateY(0px) rotate(0deg);
+                }
+                50% {
+                    transform: translateY(-20px) rotate(180deg);
+                }
+            }
+
+            .hero-content {
+                position: relative;
+                z-index: 2;
+                max-width: 1200px;
+            }
+
+            .hero h1 {
+                font-size: clamp(3rem, 8vw, 6rem);
+                font-weight: 900;
+                background: linear-gradient(
+                    135deg,
+                    #00f5ff 0%,
+                    #ff00ff 50%,
+                    #ffff00 100%
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                margin-bottom: 1rem;
+                text-shadow: 0 0 30px rgba(0, 245, 255, 0.5);
+                animation: glow 2s ease-in-out infinite alternate;
+            }
+
+            @keyframes glow {
+                from {
+                    filter: drop-shadow(0 0 20px rgba(0, 245, 255, 0.7));
+                }
+                to {
+                    filter: drop-shadow(0 0 30px rgba(255, 0, 255, 0.7));
+                }
+            }
+
+            .hero p {
+                font-size: 1.5rem;
+                margin-bottom: 3rem;
+                opacity: 0.9;
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
             }
 
             .cta-button {
+                background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1);
+                background-size: 200% 200%;
+                border: none;
+                padding: 1.5rem 3rem;
+                font-size: 1.3rem;
+                font-weight: 700;
+                color: white;
+                border-radius: 50px;
+                cursor: pointer;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                transition: all 0.3s ease;
+                animation: gradientShift 3s ease infinite;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                margin: 1rem;
+                text-decoration: none;
+                display: inline-block;
+            }
+
+            @keyframes gradientShift {
+                0% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+
+            .cta-button:hover {
+                transform: translateY(-5px) scale(1.05);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            }
+
+            .games-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                padding: 4rem 2rem;
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+
+            .game-card {
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 20px;
+                padding: 2rem;
+                text-align: center;
+                transition: all 0.3s ease;
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .game-card::before {
+                content: "";
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: linear-gradient(
+                    45deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.1),
+                    transparent
+                );
+                transform: rotate(45deg);
+                transition: all 0.5s ease;
+                opacity: 0;
+            }
+
+            .game-card:hover::before {
+                animation: shine 0.5s ease-in-out;
+            }
+
+            @keyframes shine {
+                0% {
+                    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+                    opacity: 0;
+                }
+                50% {
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateX(100%) translateY(100%) rotate(45deg);
+                    opacity: 0;
+                }
+            }
+
+            .game-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 40px rgba(0, 245, 255, 0.3);
+                border-color: rgba(0, 245, 255, 0.5);
+            }
+
+            .game-icon {
+                width: 80px;
+                height: 80px;
+                margin: 0 auto 1.5rem;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                border-radius: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 2rem;
+                font-weight: bold;
+                color: white;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            }
+
+            .game-card h3 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                color: #00f5ff;
+            }
+
+            .game-card p {
+                opacity: 0.8;
+                margin-bottom: 1.5rem;
+                line-height: 1.6;
+            }
+
+            .download-btn {
+                background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+                border: none;
+                padding: 0.8rem 2rem;
+                border-radius: 25px;
+                color: white;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
                 width: 100%;
-                max-width: 300px;
             }
-        }
 
-        /* Glassmorphism effects */
-        .glass {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+            .download-btn:hover {
+                transform: scale(1.05);
+                box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            }
 
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
-</head>
-<body>
-    <!-- Animated particles background -->
-    <div class="particles" id="particles"></div>
+            .stats {
+                display: flex;
+                justify-content: center;
+                gap: 3rem;
+                margin: 3rem 0;
+                flex-wrap: wrap;
+            }
 
-    <!-- Header -->
-    <header class="header">
-        <div class="logo">PREMIUM REWARDS</div>
-    </header>
+            .stat {
+                text-align: center;
+            }
 
-    <!-- Main content -->
-    <div class="container">
+            .stat-number {
+                font-size: 2.5rem;
+                font-weight: 900;
+                color: #00f5ff;
+                display: block;
+            }
 
-        <!-- Features -->
-        <section class="features">
-            <div class="feature-card">
-                <div class="feature-icon">💎</div>
-                <h3 class="feature-title">Premium Access</h3>
-                <p class="feature-desc">Unlock exclusive features and content available only to premium members.</p>
-                
+            .stat-label {
+                opacity: 0.7;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                font-size: 0.9rem;
+            }
+
+            .features {
+                background: rgba(0, 0, 0, 0.3);
+                padding: 4rem 2rem;
+                margin: 4rem 0;
+            }
+
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .feature {
+                text-align: center;
+                padding: 2rem;
+            }
+
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+                margin: 0 auto 1rem;
+                background: linear-gradient(135deg, #667eea, #764ba2);
+                border-radius: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+            }
+
+            .navbar {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                padding: 1rem 2rem;
+                background: rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(20px);
+                z-index: 1000;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+                font-weight: 900;
+                background: linear-gradient(135deg, #00f5ff, #ff00ff);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .nav-links {
+                display: flex;
+                gap: 2rem;
+                list-style: none;
+            }
+
+            .nav-links a {
+                color: white;
+                text-decoration: none;
+                font-weight: 500;
+                transition: color 0.3s ease;
+            }
+
+            .nav-links a:hover {
+                color: #00f5ff;
+            }
+
+            @media (max-width: 768px) {
+                .nav-links {
+                    display: none;
+                }
+
+                .games-grid {
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                    gap: 1.5rem;
+                    padding: 2rem 1rem;
+                }
+
+                .stats {
+                    gap: 2rem;
+                }
+
+                .hero p {
+                    font-size: 1.2rem;
+                }
+            }
+
+            .pulse {
+                animation: pulse 2s infinite;
+            }
+
+            @keyframes pulse {
+                0% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.05);
+                }
+                100% {
+                    transform: scale(1);
+                }
+            }
+
+            .web3-badge {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+                padding: 0.5rem 1rem;
+                border-radius: 20px;
+                font-size: 0.8rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .scroll-indicator {
+                position: absolute;
+                bottom: 30px;
+                left: 50%;
+                transform: translateX(-50%);
+                animation: bounce 2s infinite;
+            }
+
+            @keyframes bounce {
+                0%,
+                20%,
+                50%,
+                80%,
+                100% {
+                    transform: translateX(-50%) translateY(0);
+                }
+                40% {
+                    transform: translateX(-50%) translateY(-10px);
+                }
+                60% {
+                    transform: translateX(-50%) translateY(-5px);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="nav-content">
+                <div class="logo">GameVault 3.0</div>
+                <ul class="nav-links">
+                    <li><a href="#games">Games</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#download">Download</a></li>
+                </ul>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3 class="feature-title">Instant Rewards</h3>
-                <p class="feature-desc">Start earning immediately with our fast-track reward system.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎯</div>
-                <h3 class="feature-title">Targeted Offers</h3>
-                <p class="feature-desc">Receive personalized offers based on your interests and preferences.</p>
-            </div>
-        </section>
+        </nav>
 
-        <!-- Main content -->
-    <div class="container">
-        
-        <!-- Hero Section with Eye-Catching CTA -->
         <section class="hero">
-            <!-- Additional smaller CTAs -->
-            <div class="cta-buttons" >
-                <a href="#offers" class="cta-button" onclick="handleCTA()">Get Smart Link</a>
+            <div class="web3-badge">Web 3.0 Gaming</div>
+            <div class="floating-shapes">
+                <div class="shape"></div>
+                <div class="shape"></div>
+                <div class="shape"></div>
             </div>
-        </section>
 
-        <!-- Features -->
-        <!-- Stats -->
-        <section class="stats">
-            <h2>Join The Success Community</h2>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number">50K+</div>
-                    <div class="stat-label">Active Users</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">$2M+</div>
-                    <div class="stat-label">Rewards Distributed</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">4.9★</div>
-                    <div class="stat-label">User Rating</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">Support</div>
-                </div>
-            </div>
-        </section>
+            <div class="hero-content">
+                <h1>NEXT-GEN GAMING</h1>
+                <p>
+                    Experience the future of gaming with instant access to
+                    premium titles. No waiting, no limits - just pure gaming
+                    excellence.
+                </p>
 
-        <!-- Offer Selection -->
-        <section class="offer-selection">
-            <h2>Choose Your Reward Method</h2>
-
-            <div class="offers-grid">
-                <div class="offer-card smart-link" onclick="handleSmartLink()">
-                    <div class="offer-icon">🔗</div>
-                    <h3>Instant Reward Access</h3>
-                    <p>Complete simple tasks and surveys to earn instant rewards</p>
-                    <div class="offer-benefits">
-                        <span>✓ Instant payouts</span>
-                        <span>✓ Multiple reward options</span>
-                        <span>✓ Easy verification</span>
+                <div class="stats">
+                    <div class="stat">
+                        <span class="stat-number">50M+</span>
+                        <span class="stat-label">Active Players</span>
                     </div>
-                    <div class="offer-cta">Get Smart Link</div>
+                    <div class="stat">
+                        <span class="stat-number">1000+</span>
+                        <span class="stat-label">Premium Games</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">0s</span>
+                        <span class="stat-label">Loading Time</span>
+                    </div>
                 </div>
 
-                <div class="offer-card content-locker" onclick="handleContentLocker()">
-                    <div class="offer-icon">🔒</div>
-                    <h3>Premium Content Access</h3>
-                    <p>Unlock exclusive content by completing quick offers</p>
-                    <div class="offer-benefits">
-                        <span>✓ Premium downloads</span>
-                        <span>✓ Exclusive content</span>
-                        <span>✓ Ad-free experience</span>
-                    </div>
-                    <div class="offer-cta">Unlock Content</div>
-                </div>
+                <a href="#games" class="cta-button pulse">START GAMING NOW</a>
             </div>
-            
-            <!-- Urgency CTA after offers -->
-            <div class="urgency-section">
-                <p class="urgency">⚠️ Limited Time Offer - Only 24 Hours Left!</p>
+
+            <div class="scroll-indicator">
+                <div style="font-size: 2rem">⬇</div>
             </div>
         </section>
-    </div>
 
-    <script>
-        // Create animated particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
+        <section id="games" class="games-section">
+            <div class="games-grid">
+                <div class="game-card" onclick="trackConversion('fortnite')">
+                    <div class="game-icon">🎯</div>
+                    <h3>Fortnite Battle Royale</h3>
+                    <p>
+                        Jump into the ultimate battle royale experience with 100
+                        players fighting for victory.
+                    </p>
+                    <button class="download-btn">PLAY NOW - FREE</button>
+                </div>
 
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                particlesContainer.appendChild(particle);
+                <div class="game-card" onclick="trackConversion('minecraft')">
+                    <div class="game-icon">🎮</div>
+                    <h3>Minecraft Premium</h3>
+                    <p>
+                        Build, explore, and survive in infinite worlds. Unleash
+                        your creativity without limits.
+                    </p>
+                    <button class="download-btn">DOWNLOAD FREE</button>
+                </div>
+
+                <div class="game-card" onclick="trackConversion('valorant')">
+                    <div class="game-icon">⚡</div>
+                    <h3>Valorant</h3>
+                    <p>
+                        Tactical 5v5 shooter that combines precise gunplay with
+                        unique agent abilities.
+                    </p>
+                    <button class="download-btn">JOIN MATCH</button>
+                </div>
+
+                <div class="game-card" onclick="trackConversion('gta')">
+                    <div class="game-icon">🏎️</div>
+                    <h3>GTA V Online</h3>
+                    <p>
+                        Experience the criminal underworld in the most ambitious
+                        open-world game ever.
+                    </p>
+                    <button class="download-btn">ENTER LOS SANTOS</button>
+                </div>
+
+                <div class="game-card" onclick="trackConversion('roblox')">
+                    <div class="game-icon">🎲</div>
+                    <h3>Roblox Universe</h3>
+                    <p>
+                        Millions of games created by players. Endless
+                        possibilities await your discovery.
+                    </p>
+                    <button class="download-btn">EXPLORE WORLDS</button>
+                </div>
+
+                <div class="game-card" onclick="trackConversion('apex')">
+                    <div class="game-icon">🚀</div>
+                    <h3>Apex Legends</h3>
+                    <p>
+                        Choose your legend and fight for glory in this
+                        fast-paced battle royale shooter.
+                    </p>
+                    <button class="download-btn">DROP INTO ACTION</button>
+                </div>
+
+                <div class="game-card" onclick="trackConversion('cod')">
+                    <div class="game-icon">💥</div>
+                    <h3>Call of Duty</h3>
+                    <p>
+                        The most iconic FPS franchise. Multiple game modes,
+                        endless action.
+                    </p>
+                    <button class="download-btn">DEPLOY NOW</button>
+                </div>
+
+                <div class="game-card" onclick="trackConversion('cyberpunk')">
+                    <div class="game-icon">🌃</div>
+                    <h3>Cyberpunk 2077</h3>
+                    <p>
+                        Immerse yourself in the dark future of Night City. Your
+                        choices shape your destiny.
+                    </p>
+                    <button class="download-btn">JACK IN</button>
+                </div>
+
+                <div class="game-card" onclick="trackConversion('elden')">
+                    <div class="game-icon">⚔️</div>
+                    <h3>Elden Ring</h3>
+                    <p>
+                        Explore the mystical Lands Between in this epic action
+                        RPG masterpiece.
+                    </p>
+                    <button class="download-btn">BEGIN JOURNEY</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Instant Access</h3>
+                    <p>
+                        No downloads, no waiting. Start playing immediately with
+                        our cloud technology.
+                    </p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔒</div>
+                    <h3>100% Secure</h3>
+                    <p>
+                        Enterprise-grade security protects your data and gaming
+                        experience.
+                    </p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Web 3.0 Ready</h3>
+                    <p>
+                        Built for the future with blockchain integration and NFT
+                        support.
+                    </p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📱</div>
+                    <h3>Cross-Platform</h3>
+                    <p>
+                        Play on any device - PC, mobile, tablet. Your progress
+                        syncs everywhere.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="download" class="hero" style="min-height: 60vh">
+            <div class="hero-content">
+                <h2
+                    style="font-size: 3rem; margin-bottom: 2rem; color: #00f5ff"
+                >
+                    Ready to Dominate?
+                </h2>
+                <p style="margin-bottom: 2rem">
+                    Join millions of players in the ultimate gaming experience.
+                    No credit card required.
+                </p>
+                <a
+                    href="#"
+                    class="cta-button"
+                    onclick="trackConversion('main_cta')"
+                    style="font-size: 1.5rem; padding: 2rem 4rem"
+                    >GET INSTANT ACCESS</a
+                >
+            </div>
+        </section>
+
+        <script>
+            // CPA Conversion Tracking
+            let conversions = {};
+
+            function trackConversion(gameId) {
+                // Increment conversion counter
+                conversions[gameId] = (conversions[gameId] || 0) + 1;
+
+                // Flash effect for user feedback
+                const card = event.currentTarget;
+                card.style.background = "rgba(0, 245, 255, 0.3)";
+                setTimeout(() => {
+                    card.style.background = "rgba(255, 255, 255, 0.1)";
+                }, 200);
+
+                // Simulate redirect to game/offer page
+                console.log(
+                    `Conversion tracked: ${gameId} - Total: ${conversions[gameId]}`,
+                );
+
+                // In real implementation, redirect to your CPA offer:
+                // window.open(`https://your-cpa-network.com/offer/${gameId}`, '_blank');
+
+                // Show success message
+                showConversionMessage(gameId);
             }
-        }
 
-        // Handle CTA clicks
-        function handleCTA() {
-            // Generic CTA - show options
-            document.querySelector('.offer-selection').scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
+            function showConversionMessage(gameId) {
+                const message = document.createElement("div");
+                message.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: linear-gradient(135deg, #00f5ff, #ff00ff);
+                color: white;
+                padding: 2rem 3rem;
+                border-radius: 20px;
+                font-size: 1.2rem;
+                font-weight: bold;
+                z-index: 10000;
+                text-align: center;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+                animation: fadeInOut 3s ease-in-out;
+            `;
+                message.innerHTML = `🎮 Redirecting to ${gameId.toUpperCase()}...<br><small>Get ready for epic gaming!</small>`;
 
-        // Handle Smart Link offers
-        function handleSmartLink() {
-            // Add your Smart Link CPA offer URL here
-            console.log('Smart Link offer clicked');
-            alert('Redirecting to Smart Link rewards...');
-            // window.location.href = 'YOUR_SMART_LINK_URL';
-        }
+                document.body.appendChild(message);
 
-        // Handle Content Locker offers  
-        function handleContentLocker() {
-            // Add your Content Locker CPA offer URL here
-            console.log('Content Locker offer clicked');
-            alert('Redirecting to Content Locker...');
-            // window.location.href = 'YOUR_CONTENT_LOCKER_URL';
-        }
+                setTimeout(() => {
+                    document.body.removeChild(message);
+                }, 3000);
+            }
 
-        // Smooth scroll animations
-        function animateOnScroll() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                anchor.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(
+                        this.getAttribute("href"),
+                    );
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                        });
                     }
                 });
             });
 
-            document.querySelectorAll('.feature-card, .stat-item').forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'all 0.6s ease';
-                observer.observe(el);
-            });
-        }
+            // Add CSS animation for conversion message
+            const style = document.createElement("style");
+            style.textContent = `
+            @keyframes fadeInOut {
+                0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+            }
+        `;
+            document.head.appendChild(style);
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
-            animateOnScroll();
-        });
+            // Analytics tracking (replace with your actual analytics)
+            function trackPageView() {
+                console.log("Page view tracked for CPA campaign");
+                // gtag('event', 'page_view', { page_title: 'Gaming Landing Page' });
+            }
 
-        // Add hover sound effect (optional)
-        document.querySelectorAll('.cta-button, .feature-card').forEach(element => {
-            element.addEventListener('mouseenter', function() {
+            // Initialize tracking
+            trackPageView();
+
+            // Track scroll depth for engagement
+            let maxScroll = 0;
+            window.addEventListener("scroll", () => {
+                const scrollPercent =
+                    (window.scrollY /
+                        (document.body.scrollHeight - window.innerHeight)) *
+                    100;
+                if (scrollPercent > maxScroll) {
+                    maxScroll = Math.floor(scrollPercent / 25) * 25; // Track in 25% increments
+                    if (maxScroll > 0) {
+                        console.log(`Scroll depth: ${maxScroll}%`);
+                    }
+                }
             });
-        });
-    </script>
-</body>
+        </script>
+    </body>
 </html>
