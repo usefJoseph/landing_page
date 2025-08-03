@@ -1,28 +1,56 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GameVault 3.0 - Premium Gaming Experience</title>
+    <title>GAME-VERAA - Premium Gaming Platform</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-gradient: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
-            --accent-cyan: #00f5ff;
-            --accent-magenta: #ff00ff;
-            --accent-yellow: #ffff00;
+            /* Web3 Gradients & Backgrounds - More vibrant and futuristic */
+            --primary-gradient: linear-gradient(135deg, #0a001a 0%, #1a0033 25%, #2d1b69 50%, #6b46c1 75%, #8b5cf6 100%);
+            --secondary-gradient: linear-gradient(45deg, #ec4899 0%, #f59e0b 25%, #10b981 50%, #3b82f6 75%, #8b5cf6 100%);
+            --hero-gradient: radial-gradient(ellipse at center, #1e293b 0%, #0f172a 50%, #020617 100%);
+            
+            /* Neon Accents - Electric Web3 colors */
+            --accent-cyan: #00d4ff;
+            --accent-electric: #ff0080;
+            --accent-lime: #39ff14;
+            --accent-purple: #bf00ff;
+            --accent-gold: #ffd700;
+            --accent-orange: #ff6b35;
+            
+            /* Additional Web3 Colors */
+            --neon-blue: #1e90ff;
+            --neon-pink: #ff1493;
+            --neon-green: #00ff41;
+            --neon-violet: #9400d3;
+            
+            /* Text Colors - High contrast for readability */
             --text-primary: #ffffff;
             --text-secondary: rgba(255, 255, 255, 0.8);
-            --glass-bg: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --shadow-light: rgba(0, 0, 0, 0.3);
-            --shadow-heavy: rgba(0, 0, 0, 0.4);
-            --transition-fast: 0.3s ease;
-            --transition-slow: 0.5s ease;
-            --border-radius: 20px;
-            --blur-amount: 20px;
+            --text-accent: #00d4ff;
+            
+            /* Glassmorphism - Enhanced with color tints */
+            --glass-bg: rgba(139, 92, 246, 0.1);
+            --glass-border: rgba(0, 212, 255, 0.3);
+            --glass-hover: rgba(255, 0, 128, 0.15);
+            
+            /* Shadows - Colorful glows */
+            --shadow-cyan: 0 0 40px rgba(0, 212, 255, 0.4);
+            --shadow-pink: 0 0 40px rgba(255, 0, 128, 0.4);
+            --shadow-purple: 0 0 40px rgba(139, 92, 246, 0.5);
+            --shadow-multi: 0 0 60px rgba(0, 212, 255, 0.3), 0 0 100px rgba(255, 0, 128, 0.2);
+            
+            /* Transitions */
+            --transition-fast: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* Layout */
+            --border-radius: 24px;
+            --blur-amount: 30px;
         }
 
         * {
@@ -31,32 +59,88 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', sans-serif;
             background: var(--primary-gradient);
             color: var(--text-primary);
             overflow-x: hidden;
             min-height: 100vh;
-            line-height: 1.6;
         }
 
-        /* Navbar */
-        .navbar {
+        /* Animated background particles */
+        .bg-particles {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            padding: 1rem 2rem;
-            background: rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(var(--blur-amount));
-            z-index: 1000;
-            border-bottom: 1px solid var(--glass-border);
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
         }
 
-        .nav-content {
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) {
+            width: 4px;
+            height: 4px;
+            background: var(--accent-cyan);
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+            box-shadow: var(--shadow-cyan);
+        }
+
+        .particle:nth-child(2) {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-electric);
+            top: 60%;
+            left: 80%;
+            animation-delay: 2s;
+            box-shadow: var(--shadow-pink);
+        }
+
+        .particle:nth-child(3) {
+            width: 3px;
+            height: 3px;
+            background: var(--accent-lime);
+            top: 40%;
+            left: 60%;
+            animation-delay: 4s;
+        }
+
+        .particle:nth-child(4) {
+            width: 5px;
+            height: 5px;
+            background: var(--accent-purple);
+            top: 80%;
+            left: 20%;
+            animation-delay: 1s;
+            box-shadow: var(--shadow-purple);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+        }
+
+        /* Header */
+        header {
+            padding: 2rem;
+            backdrop-filter: blur(var(--blur-amount));
+            background: var(--glass-bg);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -65,12 +149,13 @@
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 2rem;
             font-weight: 900;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-magenta));
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-electric), var(--accent-lime));
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: var(--shadow-multi);
         }
 
         .nav-links {
@@ -80,830 +165,276 @@
         }
 
         .nav-links a {
-            color: var(--text-primary);
+            color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
-            transition: color var(--transition-fast);
+            transition: var(--transition-fast);
+            position: relative;
         }
 
         .nav-links a:hover {
             color: var(--accent-cyan);
+            text-shadow: 0 0 10px var(--accent-cyan);
         }
 
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            flex-direction: column;
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-electric));
+            transition: var(--transition-fast);
         }
 
-        .bar {
-            width: 25px;
-            height: 3px;
-            margin: 3px 0;
-            background-color: var(--text-primary);
-            transition: all var(--transition-fast);
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         /* Hero Section */
         .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            padding: 6rem 2rem;
             text-align: center;
-            padding: 0 2rem;
-        }
-
-        .web3-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
-            padding: 0.5rem 1rem;
-            border-radius: var(--border-radius);
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .floating-shapes {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .shape {
-            position: absolute;
-            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-magenta));
-            border-radius: 50%;
-            filter: blur(1px);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .shape:nth-child(1) {
-            width: 80px;
-            height: 80px;
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .shape:nth-child(2) {
-            width: 120px;
-            height: 120px;
-            top: 60%;
-            right: 15%;
-            animation-delay: 2s;
-        }
-
-        .shape:nth-child(3) {
-            width: 60px;
-            height: 60px;
-            bottom: 30%;
-            left: 20%;
-            animation-delay: 4s;
+            position: relative;
+            background: var(--hero-gradient);
         }
 
         .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
             position: relative;
             z-index: 2;
-            max-width: 1200px;
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
+            font-size: 4rem;
             font-weight: 900;
-            line-height: 1;
-            background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-magenta) 50%, var(--accent-yellow) 100%);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-electric), var(--accent-purple), var(--accent-lime));
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 1.5rem;
             animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.5)); }
+            to { filter: drop-shadow(0 0 40px rgba(255, 0, 128, 0.7)); }
         }
 
         .hero p {
             font-size: 1.5rem;
-            margin-bottom: 2rem;
             color: var(--text-secondary);
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 3rem;
+            line-height: 1.6;
         }
 
-        /* Buttons */
         .cta-button {
-            background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1);
-            background-size: 200% 200%;
-            border: none;
-            padding: 1.5rem 3rem;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            border-radius: 50px;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all var(--transition-fast);
-            animation: gradientShift 3s ease infinite;
-            box-shadow: 0 10px 30px var(--shadow-light);
-            margin: 0.5rem;
-            text-decoration: none;
             display: inline-block;
+            background: linear-gradient(45deg, var(--accent-electric), var(--accent-purple));
+            color: white;
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            transition: var(--transition-slow);
+            box-shadow: var(--shadow-multi);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: var(--transition-slow);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
         }
 
         .cta-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 40px var(--shadow-heavy);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 0, 128, 0.5), 0 0 60px var(--accent-cyan);
         }
 
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 2rem;
-            animation: bounce 2s infinite;
-        }
-
-        /* Games Grid */
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 2rem;
+        /* Feature Cards */
+        .features {
+            padding: 6rem 2rem;
             max-width: 1400px;
             margin: 0 auto;
-        }
-
-        .game-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(var(--blur-amount));
-            border: 1px solid var(--glass-border);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            transition: all var(--transition-fast);
-            cursor: pointer;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .game-card::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all var(--transition-slow);
-            opacity: 0;
-        }
-
-        .game-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 245, 255, 0.3);
-            border-color: rgba(0, 245, 255, 0.5);
-        }
-
-        .game-card:hover::before {
-            animation: shine 0.5s ease-in-out;
-        }
-
-        .game-card:hover .game-icon img {
-            transform: scale(1.1);
-        }
-
-        .game-icon {
-            width: 100%;
-            height: 160px;
-            overflow: hidden;
-        }
-
-        .game-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .game-card-content {
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .game-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent-cyan);
-        }
-
-        .game-card p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-
-        .download-btn {
-            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
-            border: none;
-            padding: 0.8rem 2rem;
-            border-radius: 25px;
-            color: var(--text-primary);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all var(--transition-fast);
-            width: 100%;
-            margin-top: auto;
-        }
-
-        .download-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
-        }
-
-        /* Features Section */
-        .features {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 4rem 2rem;
-            margin: 4rem 0;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            margin-top: 3rem;
         }
 
-        .feature {
-            text-align: center;
-            padding: 2rem;
+        .feature-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--blur-amount));
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            transition: var(--transition-slow);
+            position: relative;
+            overflow: hidden;
         }
 
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 1rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-electric), var(--accent-lime), var(--accent-purple));
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: var(--glass-hover);
+            box-shadow: var(--shadow-multi);
+            border-color: var(--accent-cyan);
+        }
+
+        .feature-card h3 {
             font-size: 1.5rem;
-        }
-
-        .feature h3 {
-            color: var(--accent-cyan);
+            font-weight: 700;
             margin-bottom: 1rem;
+            color: var(--accent-cyan);
         }
 
-        .feature p {
+        .feature-card p {
             color: var(--text-secondary);
+            line-height: 1.6;
         }
 
-        /* Animations */
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(180deg);
-            }
+        /* Stats Section */
+        .stats {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(0, 212, 255, 0.1));
+            backdrop-filter: blur(var(--blur-amount));
         }
 
-        @keyframes glow {
-            from {
-                filter: drop-shadow(0 0 20px rgba(0, 245, 255, 0.7));
-            }
-            to {
-                filter: drop-shadow(0 0 30px rgba(255, 0, 255, 0.7));
-            }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .stat-item h3 {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--accent-electric), var(--accent-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-5px);
-            }
-        }
-
-        @keyframes shine {
-            0% {
-                transform: translateX(-100%) translateY(-100%) rotate(45deg);
-                opacity: 0;
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateX(100%) translateY(100%) rotate(45deg);
-                opacity: 0;
-            }
-        }
-
-        @keyframes fadeInOut {
-            0%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-            10%, 90% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        .stat-item p {
+            color: var(--text-secondary);
+            font-weight: 500;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .floating-shapes {
-                display: none;
+            .hero h1 {
+                font-size: 2.5rem;
             }
 
-            .hamburger {
-                display: flex;
+            .hero p {
+                font-size: 1.2rem;
             }
 
             .nav-links {
-                position: fixed;
-                left: -100%;
-                top: 5rem;
-                flex-direction: column;
-                background-color: #0f0f23;
-                width: 100%;
-                text-align: center;
-                transition: left var(--transition-fast);
-                gap: 1.5rem;
-                padding: 2rem 0;
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .hamburger.active .bar:nth-child(1) {
-                transform: translateY(8px) rotate(45deg);
-            }
-            .hamburger.active .bar:nth-child(2) {
-                opacity: 0;
-            }
-            .hamburger.active .bar:nth-child(3) {
-                transform: translateY(-8px) rotate(-45deg);
-            }
-
-            .hero h1 {
-                font-size: clamp(2rem, 10vw, 3.5rem);
-                line-height: 1.2;
-                margin-bottom: 1.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-                padding: 0 1rem;
-                margin-bottom: 2rem;
-            }
-
-            .cta-button {
-                padding: 1.2rem 2.5rem;
-                font-size: 1rem;
-            }
-
-            .games-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-                padding: 2rem 1rem;
-            }
-
-            .game-card-content {
-                padding: 1.2rem;
-            }
-
-            .game-card h3 {
-                font-size: 1.3rem;
-            }
-
-            .game-card p {
-                font-size: 0.9rem;
-                margin-bottom: 1.2rem;
+                display: none;
             }
 
             .features-grid {
-                padding: 0 1rem;
+                grid-template-columns: 1fr;
             }
-
-            .feature {
-                padding: 1rem;
-            }
-
-            .web3-badge {
-                top: 10px;
-                right: 10px;
-                font-size: 0.7rem;
-                padding: 0.4rem 0.8rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: clamp(1.8rem, 12vw, 3rem);
-            }
-
-            .hero p {
-                font-size: 1rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .games-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-                padding: 2rem 0.5rem;
-            }
-
-            .cta-button {
-                padding: 1rem 2rem;
-                font-size: 0.9rem;
-            }
-        }
-
-        /* Utility Classes */
-        .section-title {
-            font-size: 3rem;
-            margin-bottom: 2rem;
-            color: var(--accent-cyan);
-            text-align: center;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-content">
-            <div class="logo">GameVault 3.0</div>
-            <ul class="nav-links" id="nav-links">
+    <div class="bg-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <header>
+        <nav>
+            <div class="logo">GAME-VERAA</div>
+            <ul class="nav-links">
                 <li><a href="#games">Games</a></li>
-                <li><a href="#features">Features</a></li>
+                <li><a href="#tournaments">Tournaments</a></li>
+                <li><a href="#rewards">Rewards</a></li>
                 <li><a href="#download">Download</a></li>
             </ul>
-            <div class="hamburger" id="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <section class="hero">
-        <div class="web3-badge">Web 3.0 Gaming</div>
-        <div class="floating-shapes">
-            <div class="shape"></div>
-            <div class="shape"></div>
-            <div class="shape"></div>
-        </div>
-
         <div class="hero-content">
-            <h1>NEXT-GEN<br>GAMING</h1>
-            <p>Experience the future of gaming with instant access to premium titles. No waiting, no limits - just pure gaming excellence.</p>
-            <a href="#games" class="cta-button pulse">START GAMING NOW</a>
+            <h1>Play Epic Games & Win Rewards</h1>
+            <p>Join millions of gamers on GAME-VERAA. Play the latest trending games, compete in tournaments, and earn amazing prizes and rewards!</p>
+            <a href="#" class="cta-button">Play Now - Free</a>
         </div>
     </section>
 
-    <section id="games" class="games-section">
-        <div class="games-grid">
-            <div class="game-card" data-game="fortnite">
-                <div class="game-icon">
-                    <img src="https://i.postimg.cc/brXttvqR/apple-music-us.jpg" alt="Fortnite" loading="lazy">
-                </div>
-                <div class="game-card-content">
-                    <h3>Fortnite Battle Royale</h3>
-                    <p>Jump into the ultimate battle royale experience with 100 players fighting for victory.</p>
-                    <button class="download-btn">PLAY NOW - FREE</button>
-                </div>
-            </div>
-
-            <div class="game-card" data-game="minecraft">
-                <div class="game-icon">
-                    <img src="https://i.postimg.cc/9Fh9Xz8m/garena-shells-usd.jpg" alt="Minecraft" loading="lazy">
-                </div>
-                <div class="game-card-content">
-                    <h3>Minecraft Premium</h3>
-                    <p>Build, explore, and survive in infinite worlds. Unleash your creativity without limits.</p>
-                    <button class="download-btn">DOWNLOAD FREE</button>
-                </div>
-            </div>
-
-            <div class="game-card" data-game="valorant">
-                <div class="game-icon">
-                    <img src="https://i.postimg.cc/rpK0Z4mJ/netflix-us.jpg" alt="Valorant" loading="lazy">
-                </div>
-                <div class="game-card-content">
-                    <h3>Valorant</h3>
-                    <p>Tactical 5v5 shooter that combines precise gunplay with unique agent abilities.</p>
-                    <button class="download-btn">JOIN MATCH</button>
-                </div>
-            </div>
-
-            <div class="game-card" data-game="gta">
-                <div class="game-icon">
-                    <img src="https://i.postimg.cc/wjtgSQX7/psn-card-us-1.jpg" alt="GTA V" loading="lazy">
-                </div>
-                <div class="game-card-content">
-                    <h3>GTA V Online</h3>
-                    <p>Experience the criminal underworld in the most ambitious open-world game ever.</p>
-                    <button class="download-btn">ENTER LOS SANTOS</button>
-                </div>
-            </div>
-
-            <div class="game-card" data-game="roblox">
-                <div class="game-icon">
-                    <img src="https://i.postimg.cc/wBLHBxbz/twitch-gift-card-us.jpg" alt="Roblox" loading="lazy">
-                </div>
-                <div class="game-card-content">
-                    <h3>Roblox Universe</h3>
-                    <p>Millions of games created by players. Endless possibilities await your discovery.</p>
-                    <button class="download-btn">EXPLORE WORLDS</button>
-                </div>
-            </div>
-
-            <div class="game-card" data-game="apex">
-                <div class="game-icon">
-                    <img src="https://i.postimg.cc/hj0B9yB3/USA-1.jpg" alt="Apex Legends" loading="lazy">
-                </div>
-                <div class="game-card-content">
-                    <h3>Apex Legends</h3>
-                    <p>Choose your legend and fight for glory in this fast-paced battle royale shooter.</p>
-                    <button class="download-btn">DROP INTO ACTION</button>
-                </div>
-            </div>
-
-            <div class="game-card" data-game="cod">
-                <div class="game-icon">
-                    <img src="https://i.postimg.cc/WpXVzHSd/Xbox-USD-1.jpg" alt="Call of Duty" loading="lazy">
-                </div>
-                <div class="game-card-content">
-                    <h3>Call of Duty</h3>
-                    <p>The most iconic FPS franchise. Multiple game modes, endless action.</p>
-                    <button class="download-btn">DEPLOY NOW</button>
-                </div>
-            </div>
-
-            <div class="game-card" data-game="cyberpunk">
-                <div class="game-icon">
-                    <img src="https://i.postimg.cc/hvPqML44/USaA.jpg" alt="Cyberpunk 2077" loading="lazy">
-                </div>
-                <div class="game-card-content">
-                    <h3>Cyberpunk 2077</h3>
-                    <p>Immerse yourself in the dark future of Night City. Your choices shape your destiny.</p>
-                    <button class="download-btn">JACK IN</button>
-                </div>
-            </div>
-
-            <div class="game-card" data-game="elden">
-                <div class="game-icon">
-                    <img src="https://i.postimg.cc/hvPqML44/USaA.jpg" alt="Elden Ring" loading="lazy">
-                </div>
-                <div class="game-card-content">
-                    <h3>Elden Ring</h3>
-                    <p>Explore the mystical Lands Between in this epic action RPG masterpiece.</p>
-                    <button class="download-btn">BEGIN JOURNEY</button>
-                </div>
-            </div>
-
-                        <div class="game-card" data-game="cyberpunk">
-                <div class="game-icon">
-                    <img src="https://i.postimg.cc/hvPqML44/USaA.jpg" alt="Cyberpunk 2077" loading="lazy">
-                </div>
-                <div class="game-card-content">
-                    <h3>Cyberpunk 2077</h3>
-                    <p>Immerse yourself in the dark future of Night City. Your choices shape your destiny.</p>
-                    <button class="download-btn">JACK IN</button>
-                </div>
-            </div>
-
-                        <div class="game-card" data-game="cyberpunk">
-                <div class="game-icon">
-                    <img src="https://i.postimg.cc/hvPqML44/USaA.jpg" alt="Cyberpunk 2077" loading="lazy">
-                </div>
-                <div class="game-card-content">
-                    <h3>Cyberpunk 2077</h3>
-                    <p>Immerse yourself in the dark future of Night City. Your choices shape your destiny.</p>
-                    <button class="download-btn">JACK IN</button>
-                </div>
-            </div>
-
-                                    <div class="game-card" data-game="cyberpunk">
-                <div class="game-icon">
-                    <img src="https://i.postimg.cc/hvPqML44/USaA.jpg" alt="Cyberpunk 2077" loading="lazy">
-                </div>
-                <div class="game-card-content">
-                    <h3>Cyberpunk 2077</h3>
-                    <p>Immerse yourself in the dark future of Night City. Your choices shape your destiny.</p>
-                    <button class="download-btn">JACK IN</button>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="features" class="features">
+    <section class="features">
         <div class="features-grid">
-            <div class="feature">
-                <div class="feature-icon">⚡</div>
-                <h3>Instant Access</h3>
-                <p>No downloads, no waiting. Start playing immediately with our cloud technology.</p>
+            <div class="feature-card">
+                <h3>Latest Game Releases</h3>
+                <p>Play the hottest new games before anyone else. Exclusive early access to AAA titles and indie masterpieces.</p>
             </div>
-            <div class="feature">
-                <div class="feature-icon">🔒</div>
-                <h3>100% Secure</h3>
-                <p>Enterprise-grade security protects your data and gaming experience.</p>
+            <div class="feature-card">
+                <h3>Win Real Prizes</h3>
+                <p>Compete in daily tournaments and challenges. Win gift cards, gaming gear, and cash prizes up to $10,000!</p>
             </div>
-            <div class="feature">
-                <div class="feature-icon">🌐</div>
-                <h3>Web 3.0 Ready</h3>
-                <p>Built for the future with blockchain integration and NFT support.</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">📱</div>
-                <h3>Cross-Platform</h3>
-                <p>Play on any device - PC, mobile, tablet. Your progress syncs everywhere.</p>
+            <div class="feature-card">
+                <h3>Global Community</h3>
+                <p>Connect with gamers worldwide. Join teams, make friends, and climb the global leaderboards together.</p>
             </div>
         </div>
     </section>
 
-    <section id="download" class="hero" style="min-height: 60vh">
-        <div class="hero-content">
-            <h2 class="section-title">Ready to Dominate?</h2>
-            <p style="margin-bottom: 2rem">Join millions of players in the ultimate gaming experience. No credit card required.</p>
-            <a href="#" class="cta-button" data-game="main_cta" style="font-size: 1.5rem; padding: 2rem 4rem">GET INSTANT ACCESS</a>
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>2.5M+</h3>
+                <p>Active Players</p>
+            </div>
+            <div class="stat-item">
+                <h3>500+</h3>
+                <p>Available Games</p>
+            </div>
+            <div class="stat-item">
+                <h3>$1M+</h3>
+                <p>Prizes Won</p>
+            </div>
+            <div class="stat-item">
+                <h3>24/7</h3>
+                <p>Gaming Action</p>
+            </div>
         </div>
     </section>
-
-    <script>
-        class GameVault {
-            constructor() {
-                this.conversions = {};
-                this.init();
-            }
-
-            init() {
-                this.setupNavigation();
-                this.setupGameCards();
-                this.setupSmoothScrolling();
-            }
-
-            setupNavigation() {
-                const hamburger = document.getElementById('hamburger');
-                const navLinks = document.getElementById('nav-links');
-
-                hamburger?.addEventListener('click', () => {
-                    hamburger.classList.toggle('active');
-                    navLinks.classList.toggle('active');
-                });
-
-                // Close mobile menu when clicking nav links
-                navLinks?.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        hamburger.classList.remove('active');
-                        navLinks.classList.remove('active');
-                    });
-                });
-            }
-
-            setupGameCards() {
-                document.querySelectorAll('.game-card, .cta-button').forEach(element => {
-                    element.addEventListener('click', (e) => {
-                        const gameId = element.dataset.game;
-                        if (gameId) {
-                            this.trackConversion(gameId, element);
-                        }
-                    });
-                });
-            }
-
-            setupSmoothScrolling() {
-                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                    anchor.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const target = document.querySelector(anchor.getAttribute('href'));
-                        if (target) {
-                            target.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'start'
-                            });
-                        }
-                    });
-                });
-            }
-
-            trackConversion(gameId, element) {
-                // Increment conversion counter
-                this.conversions[gameId] = (this.conversions[gameId] || 0) + 1;
-
-                // Visual feedback
-                this.flashElement(element);
-
-                // Log conversion (replace with actual tracking)
-                console.log(`Conversion tracked: ${gameId} - Total: ${this.conversions[gameId]}`);
-
-                // Show success message
-                this.showConversionMessage(gameId);
-
-                // In production, redirect to CPA offer:
-                // window.open(`https://your-cpa-network.com/offer/${gameId}`, '_blank');
-            }
-
-            flashElement(element) {
-                const originalBg = element.style.background;
-                element.style.background = 'rgba(0, 245, 255, 0.3)';
-                setTimeout(() => {
-                    element.style.background = originalBg;
-                }, 200);
-            }
-
-            showConversionMessage(gameId) {
-                const message = this.createMessageElement(gameId);
-                document.body.appendChild(message);
-
-                setTimeout(() => {
-                    if (document.body.contains(message)) {
-                        document.body.removeChild(message);
-                    }
-                }, 3000);
-            }
-
-            createMessageElement(gameId) {
-                const message = document.createElement('div');
-                message.style.cssText = `
-                    position: fixed;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-magenta));
-                    color: white;
-                    padding: 2rem 3rem;
-                    border-radius: var(--border-radius);
-                    font-size: 1.2rem;
-                    font-weight: bold;
-                    z-index: 10000;
-                    text-align: center;
-                    box-shadow: 0 20px 40px var(--shadow-light);
-                    animation: fadeInOut 3s ease-in-out;
-                `;
-                message.innerHTML = `🎮 Redirecting to ${gameId.toUpperCase()}...<br><small>Get ready for epic gaming!</small>`;
-                return message;
-            }
-        }
-
-        // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            new GameVault();
-        });
-
-        // Performance optimization: Preload critical images
-        const criticalImages = [
-            'https://placehold.co/400x250/9933FF/FFFFFF?text=Fortnite',
-            'https://placehold.co/400x250/4CAF50/FFFFFF?text=Minecraft',
-            'https://placehold.co/400x250/FF4554/FFFFFF?text=Valorant'
-        ];
-
-        criticalImages.forEach(src => {
-            const img = new Image();
-            img.src = src;
-        });
-    </script>
 </body>
 </html>
